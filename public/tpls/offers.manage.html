@@ -1,0 +1,147 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Offers</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a>Offers</a>
+            </li>
+            <li class="active">
+                <strong>Offers</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Manage Offer</h5>
+                    <div class="btn-group btn-group-xs pull-right">
+                        <div class="btn btn-default" ng-click="edit();">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <td>
+                                <b>Title</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.title}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Description</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.description}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Booking Date</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.booking_date_from}}
+                                <br>
+                                {{OfferModel.selectedItem.booking_date_to}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Travel Date</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.travel_date_from}}
+                                <br>
+                                {{OfferModel.selectedItem.travel_date_to}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Data</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.data}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Discount Type</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.discount_type}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Discount Value</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.discount_value}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Hotel</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.hotel.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Room Category</b>
+                            </td>
+                            <td>{{OfferModel.selectedItem.room_category.name}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class='col-md-4'>
+          <div class="row">
+            <div class="col-lg-12">
+                <h2>Image</h2>
+            </div>
+            <div class="col-lg-6">
+                <div class="widget-text-box">
+
+                    <img src="/image/uploads/th_{{OfferModel.selectedItem.image.name}}"
+                         class="img-preview m-b-md">
+
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <div>
+                    <div ng-hide="files.length > 0" ngf-select ngf-drop ng-model="files"
+                         ngf-multiple="false"
+
+                         ngf-pattern="image/*,application/pdf" accept="image/*,application/pdf"
+                         ng-disabled="false" ngf-capture="capture"
+                         ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                         ngf-keep="true" ngf-keep-distinct="true"
+                         ngf-allow-dir="true" class="drop-box" ngf-drop-available="dropAvailable">Select
+                        <span ng-show="dropAvailable">File</span>
+                    </div>
+
+                    <div class="preview" style="margin-bottom: 10px;">
+                        <ul ng-repeat="f in files">
+                            <li>{{f.name}}
+                                <div class="btn btn-primary btn-xs" ng-click="removeFile($index)">
+                                    <span class="glyphicon glyphicon-remove" ></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div ng-click="upload(files[0])" ng-show="files.length > 0"
+                             class="btn btn-primary full-width">Upload</div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Bookings</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>Bookings</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        <div class="col-md-6">
+            
+            <div style="background-color: white; padding: 20px; margin-top: 20px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select ng-model="search.type" class="form-control">
+                            <option value="status" >Status</option>
+                            <option value="person" >Person</option>
+                            <option value="Date" >Date</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input ng-model="search.value" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success full-width">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div style="background-color: white; padding:  0 20px; margin-top: 5px;">
+                <ul uib-pagination total-items="responseData.total" 
+                    items-per-page="responseDate.per_page"
+                    ng-model="page" 
+                    max-size="5"
+                    class="pagination-sm"
+                    boundary-link-numbers="true" 
+                    ng-change="fetchData()"
+                    style="padding:  10px 0 3px; margin: 0"
+                    rotate="false"></ul>
+                <div style="padding: 15px 0; font-size: 80%;" class="pull-right">Page {{responseData.current_page}} of {{responseData.last_page}}</div>
+            </div>
+            
+            <div 
+                ng-repeat="item in items"
+                style="background-color: white; padding: 20px; margin-top: 5px;">
+                
+                <div class="pull-right">
+                    <div class="btn btn-sm btn-default" 
+                         ng-click="showDetail(item)"
+                         >View Detail</div>
+                </div>
+                
+                <h1>{{item.id}}</h1>
+                <div style="margin-top: 5px; border-top: 1px solid #d2d2d2; padding-top: 10px;">
+                    {{item.first_name}} {{item.middle_name}} {{item.last_name}}
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-md-6"><b>FROM : </b> {{item.from_date}}</div> 
+                    <div class="col-md-6"><b>TO  : </b> {{item.to_date}}</div>
+                </div>
+                <div  style="margin-top: 5px; border-top: 1px solid #d2d2d2; padding-top: 10px;">
+                    <div class="row">
+                        <div class="col-md-6"><b>TOTAL  </b> <br>{{item.total}}</div> 
+                        <div class="col-md-6"><b>TOTAL AFTER TAX </b><br> {{item.total_after_tax}}</div>
+                    </div>
+                </div>
+                <div  style="margin-top: 5px; border-top: 1px solid #d2d2d2; padding-top: 10px; font-size: 80%;">
+                    <div class="row">
+                        <div class="col-md-6">{{item.hotel.name}}</div> 
+                        <div class="col-md-6"> {{item.room.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div ng-show="selectedItem"
+                 style="background-color: white; 
+                 border: 1px solid #d2d2d2; padding: 0 20px 20px;"
+                 >
+                <div>
+                    <h1>{{selectedItem.id}}</h1>
+                    <div style="margin-top: 5px; border-top: 1px solid #d2d2d2; padding-top: 10px;">
+                    {{selectedItem.first_name}} {{selectedItem.middle_name}} {{selectedItem.last_name}}
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <div class="col-md-6"><b>FROM : </b> {{selectedItem.from_date}}</div> 
+                        <div class="col-md-6"><b>TO  : </b> {{selectedItem.to_date}}</div>
+                    </div>
+                    <div  style="margin-top: 5px; border-top: 1px solid #d2d2d2; padding-top: 10px;">
+                        <div class="row">
+                            <div class="col-md-6"><b>TOTAL  </b> <br>{{selectedItem.total}}</div> 
+                            <div class="col-md-6"><b>TOTAL AFTER TAX </b><br> {{selectedItem.total_after_tax}}</div>
+                        </div>
+                    </div>
+                    <div  style="margin-top: 5px; border-top: 1px solid #d2d2d2; padding-top: 10px; font-size: 80%;">
+                        <div class="row">
+                            <div class="col-md-6">{{selectedItem.hotel.name}}</div> 
+                            <div class="col-md-6"> {{selectedItem.room.name}}</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        
+                        <h2> Comments </h2>
+                        <select class="form-control">
+                            <option value="comment">Comment</option>
+                            <option value="response">Response</option>
+                            <option value="response">Approve</option>
+                        </select>
+                        <textarea class="form-control"></textarea>
+                        <div class="btn btn-default">Save Comment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

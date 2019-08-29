@@ -1,0 +1,76 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Offers</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a>Offers</a>
+            </li>
+            <li class="active">
+                <strong>Offers</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+        <div class="col-md-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Select Offer Type</h5>
+                </div>
+                
+                <div class="ibox-content">
+                    <div class="btn-group">
+                        <div ng-repeat="item  in OfferRuleModel.response.data" 
+                             ng-click="selectOfferType($index)"
+                             ng-class="selected.offer_type.id === item.id?'btn btn-default active':'btn btn-default'"
+                             >
+                            {{item.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-footer">
+                    <div class="btn btn-success" 
+                        ng-show="selected.offer_type !== null"
+                         ng-click="goToStepTwo()"
+                         >Continue</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show="stepTwo">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Offer Details</h5>
+                </div>
+                
+                <div class="ibox-content">
+                    <div >
+                        <div ng-include="'/form/offers'"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" 
+                             ng-repeat="field in selected.offer_type.rule.fields">
+                            <label 
+                            class="col-sm-4 control-label" 
+                            style="text-align: left;">{{field.name}} </label>
+                            <div class="col-sm-8">
+                                <input type="{{field.type}}" 
+                                       class="form-control"
+                                       ng-model="form.data.rule.fields[$index].value" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-footer ">
+                    <div class="btn btn-success" ng-click="save(form)">Save</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

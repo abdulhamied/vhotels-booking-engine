@@ -1,0 +1,230 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Access Group < {{AccessGroupModel.selectedItem.title}} ></h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a ui-sref='v1.resource_groups'>Access Groups</a>
+            </li>
+            <li class="active">
+                <strong>{{AccessGroupModel.selectedItem.title}}</strong>
+            </li>
+            
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        <div class='col-lg-6'>
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        Set User
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label 
+                                    class="col-sm-4 control-label" 
+                                    style="text-align: left;">User: </label>
+                                <div class="col-sm-8">
+
+                                    <ui-select ng-model="selected.user" 
+                                               theme="bootstrap" 
+                                               ng-disabled="disabled"
+                                               style='width: 100%;'>
+                                        <ui-select-match placeholder="Select">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in UserService.items | propsFilter: {name: $select.search}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div ng-click="addUser()" class="btn btn-sm btn-info">Add</div>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in AccessGroupModel.selectedItem.users">
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.email}}</td>
+                                            <td>
+                                                <div ng-click="removeUser(item.pivot)" class="btn btn-danger btn-xs">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        Set Permission
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label 
+                                    class="col-sm-4 control-label" 
+                                    style="text-align: left;">Permission : </label>
+                                <div class="col-sm-8">
+
+                                    <ui-select ng-model="selected.permission" 
+                                               theme="bootstrap" 
+                                               ng-disabled="disabled"
+                                               style='width: 100%;'>
+                                        <ui-select-match placeholder="Select">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in ResourcePermissionModel.items | propsFilter: {name: $select.search}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div ng-click="addPermission()" class="btn btn-sm btn-info">Add</div>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Table</th>
+                                            <th>Permissions</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in AccessGroupModel.selectedItem.permissions">
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.resource_table}}</td>
+                                            <td>
+                                                <ul>
+                                                    <li>LIST : {{item.list}}</li>
+                                                    <li>GET : {{item.get}}</li>
+                                                    <li>CREATE : {{item.create}}</li>
+                                                    <li>UPDATE : {{item.update}}</li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <div ng-click="removePermission(item.pivot)" class="btn btn-danger btn-xs">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        Set Access
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label 
+                                    class="col-sm-4 control-label" 
+                                    style="text-align: left;">Access : </label>
+                                <div class="col-sm-8">
+
+                                    <ui-select ng-model="selected.access" 
+                                               theme="bootstrap" 
+                                               ng-disabled="disabled"
+                                               style='width: 100%;'>
+                                        <ui-select-match placeholder="Select">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in ResourceAccessModel.items | propsFilter: {name: $select.search}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div ng-click="addAccess()" class="btn btn-sm btn-info">Add</div>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Table / Type</th>
+                                            <th>Resource</th>
+                                            <th>Access</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in AccessGroupModel.selectedItem.resource_access">
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.resource_table}} / {{item.resource_type}}</td>
+                                            <td>{{item.resource_value}}</td>
+                                            <td>{{item.access}}</td>
+                                            <td>
+                                                <div ng-click="removeAccess(item.pivot)" class="btn btn-danger btn-xs">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+    </div>
+    
+</div>

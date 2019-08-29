@@ -1,0 +1,25 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{HotelModel.selectedItem.name}}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>Hotels</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="row wrapper border-bottom white-bg ">
+    <div class="btn-group btn-group-sm">
+        <a ng-repeat="menuItem in HotelModel.tabs"
+           ui-sref="{{menuItem.link}}"
+               ng-class="(HotelModel.tab === menuItem.name)?'btn btn-info':'btn btn-outline'"
+                >{{menuItem.name}}</a>
+    </div>
+</div>
+<div ui-view></div>

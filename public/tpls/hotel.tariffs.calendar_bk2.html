@@ -1,0 +1,188 @@
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Tariff Calendar</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Year</label>
+                            <select ng-model="filters.year" class="form-control">
+                                <option value="2016">2016</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Month</label>
+                            <select ng-model="filters.month" class="form-control">
+                                <option value="01">Jan</option>
+                                <option value="02">Feb</option>
+                                <option value="03">Mar</option>
+                                <option value="04">Apr</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">Aug</option>
+                                <option value="09">Sep</option>
+                                <option value="10">Oct</option>
+                                <option value="11">Nov</option>
+                                <option value="12">Dec</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3 hide">
+                            <label>Week</label>
+                            <select ng-model="filters.week" class="form-control">
+                                <option value="01-07">Week 1</option>
+                                <option value="08-14">Week 2</option>
+                                <option value="15-21">Week 3</option>
+                                <option value="22-31">Week 4</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="margin-top: 20px;"
+                                 class="btn btn-success full-width" ng-click="filter()">Filter</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div ng-repeat="roomCategory in RoomCategoryModel.items" 
+                             class="col-sm-12">
+                            <h1>{{roomCategory.name}}</h1>
+                            
+                            <div  style="width: 100%; overflow-y: auto; position: relative;">
+                                <table class='table table-bordered' style='max-width: none; width: auto;'>
+                                    <thead>
+                                        <tr>
+                                            <th ng-repeat='rate in TariffModel.rates'>
+                                                {{rate.date}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td ng-repeat='rate in TariffModel.rates'>
+                                                <div class='row'>
+                                                    <div class='col-md-9'>
+                                                        <input class='form-control' 
+                                                               ng-model='rate.room_category[roomCategory.id].count.room_count' />
+                                                    </div>
+                                                    <div class='col-md-3'>
+                                                        <div 
+                                                             ng-click='updateAvailability(roomCategory.id, rate.date, rate.room_category[roomCategory.id].count.room_count)'
+                                                            class='btn btn-success btn-xs'>
+                                                            <span class='glyphicon glyphicon-edit'
+                                                                 ></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  ng-repeat='rate in TariffModel.rates'>
+                                                <div  style="width: 200px;">
+                                                    <div class='meal-title hide'>STANDARD</div>
+                                                    <div class='meal-rates'>
+                                                        <div>
+                                                            Form : {{rate.room_category[roomCategory.id].tariff.start_date.substr(0,10)}} <br>
+                                                            To : {{rate.room_category[roomCategory.id].tariff.end_date.substr(0,10)}}
+                                                        </div>
+                                                        <div>
+                                                            Single <label class='label label-info pull-right'>{{rate.room_category[roomCategory.id].tariff.single}}</label>
+                                                        </div>
+                                                        <div>
+                                                            Double <label class='label label-info pull-right'>{{rate.room_category[roomCategory.id].tariff.double}}</label>
+                                                        </div>
+                                                        <div>
+                                                            Triple <label class='label label-info pull-right'>{{rate.room_category[roomCategory.id].tariff.triple}}</label>
+                                                        </div>
+                                                        <div>
+                                                            Quadruple <label class='label label-info pull-right'>{{rate.room_category[roomCategory.id].tariff.quadruple}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div ng-repeat='mealType in rate.room_category[roomCategory.id].meal_types'>
+                                                    <div class='meal-title'>{{mealType.tariff.meal_type.name}}</div>
+                                                    <div class='meal-rates'>
+                                                        <div>
+                                                            Adult Rate <label class='label label-info pull-right'>{{mealType.tariff.adult_rate}}</label>
+                                                        </div>
+                                                        <div>
+                                                            Child Rate <label class='label label-info pull-right'>{{mealType.tariff.child_rate}}</label>
+                                                        </div>
+                                                        <div>
+                                                            Infant Rate <label class='label label-info pull-right'>{{mealType.tariff.infant_rate}}</label>
+                                                        </div>
+                                                        <div>
+                                                            Teen Rate <label class='label label-info pull-right'>{{mealType.tariff.teen_rate}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td> 
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Add Room Availability</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Start Date</label>
+                            <input type="date" class="form-control" ng-model="form.start_date" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label>End Date</label>
+                            <input type="date" class="form-control" ng-model="form.end_date" />
+                        </div>
+                        <div class="col-sm-3">
+                            <label>Room Category</label>
+                            <select class="form-control" ng-model="form.room_category_id">
+                                <option
+                                        ng-repeat="item in RoomCategoryModel.items"
+                                        value="{{item.id}}" >
+                                    {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Count</label>
+                            <input class="form-control" ng-model="form.count" />
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-success"
+                                    ng-click="addRates()"
+                                    style="margin-top: 22px">Add</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Tariffs</h5>
+
+                </div>
+                <div class="ibox-content">
+                    
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Room Category</th>
+                                <th>Currency</th>
+                                <th>Zone</th>
+                                <th>Min - Max</th>
+                                <th>Taxes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in TariffModel.items">
+                                <td>{{item.id}}</td>
+                                <td>{{item.start_date}}</td>
+                                <td>{{item.end_date}}</td>
+                                <td>{{item.room_category.name}}</td>
+                                <td>{{item.currency.name}}</td>
+                                <td>
+                                    {{item.zone.name}}
+                                    <ul>
+                                        <li ng-repeat='country in item.zone.countries'>
+                                            {{country.name}}
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>{{item.min_nights}} - {{item.max_nights}}</td>
+                                <td>
+                                    <div>
+                                         <div ng-repeat="tax in item.taxes">
+                                            <div style='background-color: whitesmoke;
+                                                 padding: 10px;
+                                                 border: 1px solid #d2d2d2;'>
+                                                <h4>
+                                                    {{tax.name}} - 
+                                                    {{(tax.pivot.inclusive)?'inclusive':'exclusive'}}
+                                                    ({{tax.type}})
+                                                </h4>
+                                                <p>
+                                                    From {{tax.start_date.substr(0,10)}} 
+                                                    To {{tax.end_date.substr(0,10)}} 
+                                                </p>
+                                                <p>Amount : {{tax.amount}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn btn-danger btn-xs " ng-click="TariffModel.delete($index, null, null)">
+                                        <span class='glyphicon glyphicon-remove'></span>
+                                    </div> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

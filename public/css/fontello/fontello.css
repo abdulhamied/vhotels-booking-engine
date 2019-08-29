@@ -1,0 +1,520 @@
+@font-face {
+    font-family: 'fontello';
+    src: url('/font/fontello.eot?60104591');
+    src: url('/font/fontello.eot?60104591#iefix') format('embedded-opentype'), url('/font/fontello.woff2?60104591') format('woff2'), url('/font/fontello.woff?60104591') format('woff'), url('/font/fontello.ttf?60104591') format('truetype'), url('/font/fontello.svg?60104591#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+
+
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+
+
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('/font/fontello.svg?60104591#fontello') format('svg');
+  }
+}
+*/
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-star:before {
+    content: '\e800';
+}
+
+
+/* '' */
+
+.icon-airport:before {
+    content: '\e801';
+}
+
+
+/* '' */
+
+.icon-airplane:before {
+    content: '\e802';
+}
+
+
+/* '' */
+
+.icon-speedboat:before {
+    content: '\e803';
+}
+
+
+/* '' */
+
+.icon-size:before {
+    content: '\e804';
+}
+
+
+/* '' */
+
+.icon-resort:before {
+    content: '\e805';
+}
+
+
+/* '' */
+
+.icon-dine:before {
+    content: '\e806';
+}
+
+
+/* '' */
+
+.icon-pool:before {
+    content: '\e807';
+}
+
+
+/* '' */
+
+.icon-spa:before {
+    content: '\e808';
+}
+
+
+/* '' */
+
+.icon-welcomedrink:before {
+    content: '\e809';
+}
+
+
+/* '' */
+
+.icon-disco:before {
+    content: '\e80a';
+}
+
+
+/* '' */
+
+.icon-culturalshow:before {
+    content: '\e80b';
+}
+
+
+/* '' */
+
+.icon-shopping:before {
+    content: '\e80c';
+}
+
+
+/* '' */
+
+.icon-conventioncenter:before {
+    content: '\e80d';
+}
+
+
+/* '' */
+
+.icon-conferenceroom:before {
+    content: '\e80e';
+}
+
+
+/* '' */
+
+.icon-wedding:before {
+    content: '\e80f';
+}
+
+
+/* '' */
+
+.icon-volleyball:before {
+    content: '\e810';
+}
+
+
+/* '' */
+
+.icon-basketball:before {
+    content: '\e811';
+}
+
+
+/* '' */
+
+.icon-football:before {
+    content: '\e812';
+}
+
+
+/* '' */
+
+.icon-billiards:before {
+    content: '\e813';
+}
+
+
+/* '' */
+
+.icon-badminton:before {
+    content: '\e814';
+}
+
+
+/* '' */
+
+.icon-tabletenis:before {
+    content: '\e815';
+}
+
+
+/* '' */
+
+.icon-badminton2:before {
+    content: '\e816';
+}
+
+
+/* '' */
+
+.icon-tennis:before {
+    content: '\e817';
+}
+
+
+/* '' */
+
+.icon-gym:before {
+    content: '\e818';
+}
+
+
+/* '' */
+
+.icon-diving:before {
+    content: '\e819';
+}
+
+
+/* '' */
+
+.icon-snorkelling:before {
+    content: '\e81a';
+}
+
+
+/* '' */
+
+.icon-boathire:before {
+    content: '\e81b';
+}
+
+
+/* '' */
+
+.icon-canoe:before {
+    content: '\e81c';
+}
+
+
+/* '' */
+
+.icon-catamaran:before {
+    content: '\e81d';
+}
+
+
+/* '' */
+
+.icon-waterski:before {
+    content: '\e81e';
+}
+
+
+/* '' */
+
+.icon-jetski:before {
+    content: '\e81f';
+}
+
+
+/* '' */
+
+.icon-windsurfing:before {
+    content: '\e820';
+}
+
+
+/* '' */
+
+.icon-dolphin:before {
+    content: '\e821';
+}
+
+
+/* '' */
+
+.icon-fishing:before {
+    content: '\e822';
+}
+
+
+/* '' */
+
+.icon-photoflight:before {
+    content: '\e823';
+}
+
+
+/* '' */
+
+.icon-submarine:before {
+    content: '\e824';
+}
+
+
+/* '' */
+
+.icon-maxroom:before {
+    content: '\e825';
+}
+
+
+/* '' */
+
+.icon-norooms:before {
+    content: '\e826';
+}
+
+
+/* '' */
+
+.icon-livingroom:before {
+    content: '\e827';
+}
+
+
+/* '' */
+
+.icon-aircondition:before {
+    content: '\e828';
+}
+
+
+/* '' */
+
+.icon-ceilingfan:before {
+    content: '\e829';
+}
+
+
+/* '' */
+
+.icon-iddphone:before {
+    content: '\e82a';
+}
+
+
+/* '' */
+
+.icon-safe:before {
+    content: '\e82b';
+}
+
+
+/* '' */
+
+.icon-minibar:before {
+    content: '\e82c';
+}
+
+
+/* '' */
+
+.icon-satelitetv:before {
+    content: '\e82d';
+}
+
+
+/* '' */
+
+.icon-livingarea:before {
+    content: '\e82e';
+}
+
+
+/* '' */
+
+.icon-inroomdining:before {
+    content: '\e82f';
+}
+
+
+/* '' */
+
+.icon-outdoordining:before {
+    content: '\e830';
+}
+
+
+/* '' */
+
+.icon-ipoddock:before {
+    content: '\e831';
+}
+
+
+/* '' */
+
+.icon-entertainmentsystem:before {
+    content: '\e832';
+}
+
+
+/* '' */
+
+.icon-daybed:before {
+    content: '\e833';
+}
+
+
+/* '' */
+
+.icon-workdesk:before {
+    content: '\e834';
+}
+
+
+/* '' */
+
+.icon-instantoffice:before {
+    content: '\e835';
+}
+
+
+/* '' */
+
+.icon-freewifi:before {
+    content: '\e836';
+}
+
+
+/* '' */
+
+.icon-bathrobe:before {
+    content: '\e837';
+}
+
+
+/* '' */
+
+.icon-slippers:before {
+    content: '\e838';
+}
+
+
+/* '' */
+
+.icon-hairdryer:before {
+    content: '\e839';
+}
+
+
+/* '' */
+
+.icon-beachtowel:before {
+    content: '\e83a';
+}
+
+
+/* '' */
+
+.icon-showers:before {
+    content: '\e83b';
+}
+
+
+/* '' */
+
+.icon-privatepool:before {
+    content: '\e83c';
+}
+
+
+/* '' */
+
+.icon-jacuzzi:before {
+    content: '\e83d';
+}
+
+
+/* '' */
+
+.icon-coffeemachine:before {
+    content: '\e83e';
+}
+
+
+/* '' */
+
+.icon-roomservice:before {
+    content: '\e83f';
+}
+
+
+/* '' */
+
+.icon-villa-menu:before {
+    content: '\e840';
+}
+
+
+/* '' */
+
+.icon-villa-logo-small:before {
+    content: '\e841';
+}
+
+
+/* '' */
+
+.icon-villa-logo-big:before {
+    content: '\e842';
+}
+
+
+/* '' */

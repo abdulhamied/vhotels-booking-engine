@@ -1,0 +1,207 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{ServiceModel.selectedItem.name}}
+            <small>{{ServiceModel.selectedItem.hotel.name}}</small>
+        </h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li >
+                <a ui-sref="v1.services">Services</a>
+            </li>
+            <li class="active">
+                <strong>{{ServiceModel.selectedItem.name}}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{ServiceModel.selectedItem.name}}</h5>
+                    <div class="btn btn-default btn-xs pull-right" 
+                         ng-click="edit()">
+                        <span class="fa fa-edit"></span>
+                    </div>
+                </div>
+                
+                <div class='ibox-content'>
+                    <h4><i>{{ServiceModel.selectedItem.name}}</i></h4>
+                    <div ng-bind-html="ServiceModel.selectedItem.description"></div>
+                </div>
+            </div>
+        </div>
+                
+                
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{ServiceModel.selectedItem.name}}</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 style='font-size: 100%; text-transform: uppercase;'><b>Main Image</b></h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="widget-text-box">
+
+                                <img src="/image/uploads/th_{{ServiceModel.selectedItem.image.name}}" 
+                                     class="img-preview m-b-md">
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <div ng-hide="files.length > 0" ngf-select ngf-drop ng-model="files"
+                                     ngf-multiple="false" 
+
+                                     ngf-pattern="image/*,application/pdf" accept="image/*,application/pdf"
+                                     ng-disabled="false" ngf-capture="capture"
+                                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                     ngf-keep="true" ngf-keep-distinct="true"
+                                     ngf-allow-dir="true" class="drop-box" ngf-drop-available="dropAvailable">Select
+                                    <span ng-show="dropAvailable">File</span>
+                                </div>
+
+                                <div class="preview" style="margin-bottom: 10px;">
+                                    <ul ng-repeat="f in files">
+                                        <li>{{f.name}}
+                                            <div class="btn btn-primary btn-xs" ng-click="removeFile($index)">
+                                                <span class="glyphicon glyphicon-remove" ></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div ng-click="upload(files[0])" ng-show="files.length > 0"
+                                         class="btn btn-primary full-width">Upload</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-12">
+                            <h2 style='font-size: 100%; text-transform: uppercase;'><b>Logo</b></h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="widget-text-box">
+
+                                <img src="/image/uploads/th_{{ServiceModel.selectedItem.logo.name}}" 
+                                     class="img-preview m-b-md">
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <div ng-hide="logo.length > 0" ngf-select ngf-drop ng-model="logo"
+                                     ngf-multiple="false" 
+
+                                     ngf-pattern="image/*,application/pdf" accept="image/*,application/pdf"
+                                     ng-disabled="false" ngf-capture="capture"
+                                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                     ngf-keep="true" ngf-keep-distinct="true"
+                                     ngf-allow-dir="true" class="drop-box" ngf-drop-available="dropAvailable">Select
+                                    <span ng-show="dropAvailable">File</span>
+                                </div>
+
+                                <div class="preview" style="margin-bottom: 10px;">
+                                    <ul ng-repeat="f in logo">
+                                        <li>{{f.name}}
+                                            <div class="btn btn-primary btn-xs" ng-click="removeLogo($index)">
+                                                <span class="glyphicon glyphicon-remove" ></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div ng-click="uploadLogo(logo[0])" ng-show="logo.length > 0"
+                                         class="btn btn-primary full-width">Upload</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Gallery</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div 
+                             ngf-select ngf-drop
+                             ng-model="galleryFiles"
+                             ngf-multiple="true" 
+
+                             ngf-pattern="image/*" accept="image/*"
+                             ng-disabled="false" ngf-capture="capture"
+                             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ngf-keep="true"
+                             ngf-keep-distinct="true"
+                             ngf-allow-dir="true" class="drop-box" ngf-drop-available="dropAvailable">Select
+                            <span ng-show="dropAvailable">File</span>
+                        </div>
+
+                        <div class="preview" style="margin-bottom: 10px;">
+                            <ul ng-repeat="f in galleryFiles">
+                                <li>{{f.name}}
+                                    <div class="btn btn-primary btn-xs" 
+                                         ng-click="removeGalleryFile($index)">
+                                        <span class="glyphicon glyphicon-remove" ></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div ng-click="uploadAll(galleryFiles)"
+                                 ng-show="galleryFiles.length > 0"
+                                 class="btn btn-primary full-width">Upload</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div ng-repeat="item in ServiceModel.selectedItem.gallery" 
+                             class="col-md-6">
+                            <div style="background-color: whitesmoke; 
+                                 border: 1px solid #9ea6b9;
+                                 border-bottom: 0;
+                                 padding-top: 5px; padding-left: 5px;">
+                                <button class="btn btn-danger btn-xs" 
+                                        ng-click="removeImage($index)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                            <img 
+                                 style="
+                                 background-position: center;
+                                 background-size: cover;
+                                 background-image: url(/image/uploads/th_{{item.name}});
+                                 width:  100%; height: 200px; "
+                                     class="img-preview m-b-md">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

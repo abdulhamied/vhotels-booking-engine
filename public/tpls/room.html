@@ -1,0 +1,261 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{RoomModel.selectedItem.room_category.name}}
+            <small>{{RoomModel.selectedItem.hotel.name}}</small>
+        </h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>Rooms</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{RoomModel.selectedItem.room_category.name}}</h5>
+                    <div class="btn btn-default btn-xs pull-right" ng-click="edit()">
+                        <span class="fa fa-edit"></span>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Image</h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="widget-text-box">
+
+                                <img src="/image/uploads/th_{{RoomModel.selectedItem.image.name}}" 
+                                     class="img-preview m-b-md">
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <div ng-hide="files.length > 0" ngf-select ngf-drop ng-model="files"
+                                     ngf-multiple="false" 
+
+                                     ngf-pattern="image/*,application/pdf" accept="image/*,application/pdf"
+                                     ng-disabled="false" ngf-capture="capture"
+                                     ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                     ngf-keep="true" ngf-keep-distinct="true"
+                                     ngf-allow-dir="true" class="drop-box" ngf-drop-available="dropAvailable">Select
+                                    <span ng-show="dropAvailable">File</span>
+                                </div>
+
+                                <div class="preview" style="margin-bottom: 10px;">
+                                    <ul ng-repeat="f in files">
+                                        <li>{{f.name}}
+                                            <div class="btn btn-primary btn-xs" ng-click="removeFile($index)">
+                                                <span class="glyphicon glyphicon-remove" ></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div ng-click="upload(files[0])" ng-show="files.length > 0"
+                                         class="btn btn-primary full-width">Upload</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+
+                        <div class="col-md-12" style="margin-top: 20px;">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{{RoomModel.selectedItem.room_category.name}}</td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td>Code</td>
+                                        <td>{{RoomModel.selectedItem.code}}</td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>{{RoomModel.selectedItem.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Number of Rooms : </td>
+                                        <td>{{RoomModel.selectedItem.number_of_rooms}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extra Bed Allowed </td>
+                                        <td>{{(RoomModel.selectedItem.extra_bed_allowed)?"Yes":"No"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Baby cot availability: </td>
+                                        <td>{{(RoomModel.selectedItem.baby_cot_availability)?"Yes":"No"}}</td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Gallery</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div>
+                        <div 
+                             ngf-select ngf-drop
+                             ng-model="galleryFiles"
+                             ngf-multiple="true" 
+
+                             ngf-pattern="image/*" accept="image/*"
+                             ng-disabled="false" ngf-capture="capture"
+                             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ngf-keep="true"
+                             ngf-keep-distinct="true"
+                             ngf-allow-dir="true" class="drop-box" ngf-drop-available="dropAvailable">Select
+                            <span ng-show="dropAvailable">File</span>
+                        </div>
+
+                        <div class="preview" style="margin-bottom: 10px;">
+                            <ul ng-repeat="f in galleryFiles">
+                                <li>{{f.name}}
+                                    <div class="btn btn-primary btn-xs" 
+                                         ng-click="removeGalleryFile($index)">
+                                        <span class="glyphicon glyphicon-remove" ></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div ng-click="uploadAll(galleryFiles)"
+                                 ng-show="galleryFiles.length > 0"
+                                 class="btn btn-primary full-width">Upload</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div ng-repeat="item in RoomModel.selectedItem.gallery" 
+                             class="col-md-6">
+                            <div style="background-color: whitesmoke; 
+                                 border: 1px solid #9ea6b9;
+                                 border-bottom: 0;
+                                 padding-top: 5px; padding-left: 5px;">
+                                <button class="btn btn-danger btn-xs" 
+                                        ng-click="removeImage($index)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </div>
+                            <img 
+                                 style="
+                                 background-position: center;
+                                 background-size: cover;
+                                 background-image: url(/image/uploads/th_{{item.name}});
+                                 width:  100%; height: 200px; "
+                                     class="img-preview m-b-md">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Occupancies</h5>
+                    <div class="btn btn-default btn-xs pull-right" ng-click="addOccupancy()">
+                        <span class="fa fa-plus"></span>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Adult Occupancy</th>
+                                <th>Teen Occupancy</th>
+                                <th>Child Occupancy</th>
+                                <th>Infant Occupancy</th>
+                                <th>Person Occupancy</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="occupancy in RoomModel.selectedItem.occupancies">
+                                <td>{{occupancy.adult_occupancy}}</td>
+                                <td>{{occupancy.teen_occupancy}}</td>
+                                <td>{{occupancy.child_occupancy}}</td>
+                                <td>{{occupancy.infant_occupancy}}</td>
+                                <td>{{occupancy.person_occupancy}}</td>
+                                <td>
+                                    <div class="btn-group btn-group-xs">
+                                        <div class="btn btn-danger" 
+                                             ng-click="removeOccupancy($index)">Remove</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Facilities</h5>
+                    <div class="btn btn-default btn-xs pull-right" ng-click="addFacility()">
+                        <span class="fa fa-plus"></span>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Facility/ Amenity Name</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facility in RoomModel.selectedItem.facilities">
+                                <td>{{facility.name}}</td>
+                                <td>{{facility.type}}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-xs" ng-click="removeFacility($index)">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        
+        
+
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>My Profile</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <strong>My Profile</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Basic Information</h5>
+                </div>
+                
+                <div class='ibox-content'>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Email</td>
+                            <td><i>{{ProfileService.loggedInUser.email}}</i></td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td><i>{{ProfileService.loggedInUser.name}}</i></td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td><i>{{ProfileService.loggedInUser.type}}</i></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                

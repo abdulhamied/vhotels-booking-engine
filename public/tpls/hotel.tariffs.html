@@ -1,0 +1,425 @@
+<div class="wrapper wrapper-content animated fadeInRight ">
+    <div class="row">
+        
+        
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Room Categories</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 150px;">Select</th>
+                                <th>Room Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in RoomCategoryModel.items">
+                                <td>
+                                    <h4>{{item.name}}</h4>
+                                    <div
+                                            ng-click="toggleRoomCategory(item.id, $index)"
+                                            ng-class="(roomCategories[item.id])?'btn btn-xs btn-default active':'btn btn-xs btn-default'">
+                                        {{(roomCategories[item.id])?'selected' : 'select'}}
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <h4>Meal Supplements</h4>
+                                    <h5 ng-show="item.hotel_meal_types.length === 0"> No Meal Types for the hotel</h5>
+                                    <div class="row"
+                                        ng-show="roomCategories[item.id]"
+                                      >
+                                        <div class="col-sm-12"  
+                                             style="
+                                                border-bottom: 1px dashed #ccc;
+                                                padding-bottom: 20px;
+                                                margin-bottom: 20px;
+                                                "
+                                                   ng-repeat="mealType in item.hotel_meal_types"
+                                         >
+                                            <div ng-show="roomDefaultPlans[item.id] && roomDefaultPlans[item.id] === mealType.id"
+                                                 class="btn btn-info btn-xs active"
+                                                 >Selected Default</div>
+                                            <div ng-hide="roomDefaultPlans[item.id]  && roomDefaultPlans[item.id] === mealType.id" 
+                                                 ng-click="selectMealType(item.id, mealType.id)"
+                                                 class="btn btn-info btn-xs"
+                                                 >Select Default</div>
+                                            <div class="col-sm-12">
+                                                <h4>{{mealType.name}}</h4>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Adult Rate</label>
+                                                <input ng-model="roomRates[item.id][mealType.id].adult_rate" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Child Rate</label>
+                                                <input ng-model="roomRates[item.id][mealType.id].child_rate" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Infant Rate</label>
+                                                <input ng-model="roomRates[item.id][mealType.id].infant_rate" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Teen Rate</label>
+                                                <input ng-model="roomRates[item.id][mealType.id].teen_rate" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    {{ TariffModel.errors['room_category_id'][0] }}
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Tariff Add</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label"
+                                        style="text-align: left;">Zone: </label>
+                                <div class="col-sm-8">
+
+                                    <ui-select ng-model="selected.zone"
+                                               theme="bootstrap"
+                                               ng-disabled="disabled"
+                                               style='width: 100%;'>
+                                        <ui-select-match placeholder="Select">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in ZoneModel.items | propsFilter: {name: $select.search}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <div style="color:red;" >
+                                        {{ TariffModel.errors['zone_id'][0] }}
+                                    </div>
+    
+                                </div>
+
+                            </div>
+                            <div class="form-group col-sm-6 ">
+                                <label class="col-sm-4 control-label"
+                                        style="text-align: left;">Currency: </label>
+                                <div class="col-sm-8">
+
+                                    <ui-select ng-model="selected.currency"
+                                               theme="bootstrap"
+                                               ng-disabled="disabled"
+                                               style='width: 100%;'>
+                                        <ui-select-match placeholder="Select">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in CurrencyModel.items | propsFilter: {name: $select.search}">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <div style="color:red;" >
+                                        {{ TariffModel.errors['currency_id'][0] }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label"
+                                       style="text-align: left;">
+                                    From :
+                                </label>
+                                <div class="col-sm-12">
+                                    <mv-date-field field-value='form.start_date'></mv-date-field>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div style="color:red;">
+                                        {{ TariffModel.errors['start_date'][0] }}</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label"
+                                       style="text-align: left;">
+                                    To :
+                                </label>
+                                <div class="col-sm-12">
+                                    <mv-date-field field-value='form.end_date'></mv-date-field>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div style="color:red;">
+                                        {{ TariffModel.errors['end_date'][0] }}</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                
+                                <div style='margin-top: 20px;' 
+                                     ng-click='loadTaxes()'
+                                     
+                                     class="btn btn-success">Load Taxes</div>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Single :</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.single" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['single'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Double :</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.double" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['double'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Twin:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.twin" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['twin'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Triple:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.triple" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['triple'][0] }} </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Quadruple:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.quadruple" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['quadruple'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> 5 Pax:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.pax_5" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['pax_5'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> 6 Pax:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.pax_6" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['pax_6'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> 7 Pax:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.pax_7" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['pax_7'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> 8 Pax:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.pax_8" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['pax_8'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> 9 Pax:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.pax_9" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['pax_9'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> 10 Pax:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.pax_10" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['pax_10'][0] }} </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Child Rate :</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.child_rate" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['child_rate'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Teen Rate :</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.teen_rate" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['teen_rate'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Infant Rate:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.infant_rate" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['infant_rate'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Baby Cot Rate :</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.baby_cot_rate" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['baby_cot_rate'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Extra Bed Rate :</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.extra_bed_rate" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['extra_bed_rate'][0] }} </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Min Nights:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.min_nights" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['min_nights'][0] }} </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="col-sm-12 control-label" style="text-align: left;"> Max Nights:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" ng-model="form.max_nights" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <div style="color:red;"> {{ TariffModel.errors['max_nights'][0] }} </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Taxes</h5>
+
+                </div>
+                <div class="ibox-content">
+                    
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Inclusion Status</th>
+                                <th>Tax</th>
+                                <th>Duration</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in TaxExpenseModel.items">
+                                <td>
+                                    <div
+                                            ng-click="toggleTaxOption(item.id)"
+                                            ng-class="(taxOptions[item.id])?'btn btn-xs btn-default active':'btn btn-xs btn-default'">select</div>
+                                </td>
+                                <td>
+                                    <div
+                                            ng-click="setTaxInclusive(item.id, (!taxInclusionOptions[item.id]))"
+                                            ng-class="(taxInclusionOptions[item.id])?'btn btn-xs btn-default active':'btn btn-xs btn-default'">{{taxInclusionOptions[item.id]}}</div>
+                                </td>
+                                <td>
+                                    {{item.name}} ( {{item.type}} )
+                                </td>
+                                <td>
+                                    {{item.start_date.substr(0,10)}} <br> 
+                                {{item.end_date.substr(0,10)}}
+                                </td>
+                                <td>{{item.amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="btn btn-success" ng-click="save()">Save</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

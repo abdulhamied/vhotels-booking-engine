@@ -1,0 +1,120 @@
+<div class="ibox v-ibox float-e-margins">
+    <div class="ibox-title v-ibox-title">
+        <h5>Tariff Detail</h5>
+
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-3">
+                <small class="stats-label">Single</small>
+                <h4>{{form.single}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">Double</small>
+                <h4>{{form.double}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">Twin</small>
+                <h4>{{form.twin}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">Triple</small>
+                <h4>{{form.triple}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-3">
+                <small class="stats-label">Quadruple</small>
+                <h4>{{form.quadruple}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">PAX 5</small>
+                <h4>{{form.pax_5}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">PAX 6</small>
+                <h4>{{form.pax_6}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">PAX 7</small>
+                <h4>{{form.pax_7}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-3">
+                <small class="stats-label">PAX 8</small>
+                <h4>{{form.pax_8}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">PAX 9</small>
+                <h4>{{form.pax_9}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">PAX 10</small>
+                <h4>{{form.pax_10}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-3">
+                <small class="stats-label">CHILD RATE</small>
+                <h4>{{form.child_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">TEEN RATE</small>
+                <h4>{{form.teen_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">CHILD RATE</small>
+                <h4>{{form.child_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">INFANT RATE</small>
+                <h4>{{form.infant_rate}}</h4>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-xs-3">
+                <small class="stats-label">BABY COT RATE</small>
+                <h4>{{form.baby_cot_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">EXTRA BED RATE</small>
+                <h4>{{form.extra_bed_rate}}</h4>
+            </div>
+           
+        </div>
+    </div>
+    
+    <div class="ibox-content" ng-repeat='mealPlan in form.meal_plans'>
+        <div class="row">
+            <div class='col-xs-12'><h3>{{mealPlan.meal_type.name}}</h3></div>
+            <div class="col-xs-3">
+                <small class="stats-label">ADULT RATE</small>
+                <h4>{{mealPlan.adult_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">TEEN RATE</small>
+                <h4>{{mealPlan.teen_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">CHILD RATE</small>
+                <h4>{{mealPlan.child_rate}}</h4>
+            </div>
+            <div class="col-xs-3">
+                <small class="stats-label">INFANT RATE</small>
+                <h4>{{mealPlan.infant_rate}}</h4>
+            </div>
+           
+        </div>
+    </div>
+    
+</div>
